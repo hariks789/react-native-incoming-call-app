@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "545211587449",
+    "project_id": "mycallkeepapp",
+    "storage_bucket": "mycallkeepapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:545211587449:android:8d869fa1bcdb049167ada8",
+        "android_client_info": {
+          "package_name": "com.mycallkeepapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "545211587449-pjg59ol5jqtqg3ibmoeaugim627j9kfv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCsjVrZ29z5fScoW2xYK3Nfsbz_GiYUpFQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "545211587449-pjg59ol5jqtqg3ibmoeaugim627j9kfv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

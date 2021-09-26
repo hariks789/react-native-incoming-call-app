@@ -7,7 +7,6 @@
  */
 
 import React from 'react';
-import type {Node} from 'react';
 import {
   SafeAreaView,
   ScrollView,
@@ -17,6 +16,7 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
+import messaging from '@react-native-firebase/messaging';
 
 import {
   Colors,
@@ -26,7 +26,33 @@ import {
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
 
-const Section = ({children, title}): Node => {
+messaging().onMessage(async remoteMessage => {
+  console.log(remoteMessage);
+});
+
+messaging().setBackgroundMessageHandler(async remoteMessage => {
+  console.log('Message handled in the background!', remoteMessage);
+  // handleWithPush(remoteMessage);
+  // RNCallKeep.displayIncomingCall(
+  //   uuid(),
+  //   '+919497641816',
+  //   'Hariks',
+  //   'number',
+  //   false,
+  //   null,
+  // );
+});
+
+const checkToken = async () => {
+  const fcmToken = await messaging().getToken();
+  if (fcmToken) {
+    console.log('fcmToken:', fcmToken);
+  }
+};
+
+checkToken();
+
+const Section = ({children, title}) => {
   const isDarkMode = useColorScheme() === 'dark';
   return (
     <View style={styles.sectionContainer}>
@@ -52,7 +78,7 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const App: () => Node = () => {
+const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {
