@@ -10,6 +10,7 @@ import React from 'react';
 import {
   SafeAreaView,
   ScrollView,
+  Platform,
   StatusBar,
   StyleSheet,
   Text,
@@ -17,7 +18,7 @@ import {
   View,
 } from 'react-native';
 import messaging from '@react-native-firebase/messaging';
-
+import 'react-native-get-random-values';
 import {
   Colors,
   DebugInstructions,
@@ -25,22 +26,68 @@ import {
   LearnMoreLinks,
   ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import {v4 as uuidv4} from 'uuid';
+
+import RNCallKeep from 'react-native-callkeep';
 
 messaging().onMessage(async remoteMessage => {
-  console.log(remoteMessage);
+  const id = uuidv4();
+  console.log(remoteMessage, id);
+  try {
+    RNCallKeep.displayIncomingCall(
+      id,
+      '+919497641816',
+      'Hariks',
+      'number',
+      false,
+      null,
+    );
+  } catch (error) {
+    console.log(error);
+  }
 });
 
-messaging().setBackgroundMessageHandler(async remoteMessage => {
-  console.log('Message handled in the background!', remoteMessage);
-  // handleWithPush(remoteMessage);
-  // RNCallKeep.displayIncomingCall(
-  //   uuid(),
-  //   '+919497641816',
-  //   'Hariks',
-  //   'number',
-  //   false,
-  //   null,
-  // );
+messaging().setBackgroundMessageHandler(async message => {
+  // const {callId, callerPhone} = message?.data;
+  // console.log({message, callId});
+  // RNCallKeep.displayIncomingCall(callId, callerPhone);
+  const id = uuidv4();
+  console.log(message, id);
+  try {
+    RNCallKeep.displayIncomingCall(
+      id,
+      '+919497641816',
+      'Hariks',
+      'number',
+      false,
+      null,
+    );
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+RNCallKeep.setup({
+  ios: {
+    appName: 'App name',
+  },
+  android: {
+    alertTitle: 'Permissions required',
+    alertDescription: 'This application needs to access your phone accounts',
+    cancelButton: 'Cancel',
+    okButton: 'ok',
+  },
+}).then(accepted => {
+  if (Platform.android) {
+    RNCallKeep.setActive(true);
+  }
+  RNCallKeep.addEventListener('answerCall', ({callUUID, ...o}) => {
+    // to hide the native "accepted call" screen
+    RNCallKeep.rejectCall(callUUID);
+  });
+  RNCallKeep.addEventListener('endCall', ({callUUID}) => {
+    console.log('endCall.', callUUID);
+  });
 });
 
 const checkToken = async () => {

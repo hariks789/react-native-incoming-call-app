@@ -13,7 +13,10 @@
     "@react-native-firebase/app": "^12.8.0",
     "@react-native-firebase/messaging": "^12.8.0",
     "react": "17.0.2",
-    "react-native": "0.65.1"
+    "react-native": "0.65.1",
+    "react-native-callkeep": "^4.2.0",
+    "react-native-get-random-values": "^1.7.0",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
