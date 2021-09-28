@@ -1,4 +1,10 @@
-# rn-callkeep-android
+# iOS
+
+Uses react-native-callkeep package to present incoming call with fcm data only messages
+
+
+
+# Android
 
 Uses fcm for data only message to wake the app in quit state or lock state.
 Presents a local notification with android USE_FULL_SCREEN_INTENT to launch rn app even in lock screen. 
@@ -28,4 +34,4 @@ curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
 ```
 
 # ToDo
-Add iOS side of things
+Add android side of code
