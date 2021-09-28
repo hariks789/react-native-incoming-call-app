@@ -1,22 +1,31 @@
 # rn-callkeep-android
 
+Uses fcm for data only message to wake the app in quit state or lock state.
+Presents a local notification with android USE_FULL_SCREEN_INTENT to launch rn app even in lock screen. 
+While the device is unlocked app presents a headsup notification with action buttons
+
+Refer https://github.com/zo0r/react-native-push-notification/pull/2112
+
+
 ```
 curl --location --request POST 'https://fcm.googleapis.com/fcm/send' \
---header 'Authorization: key=AAAAfvEkm3k:APA91bFp_b0cBtLh6SfU3LRjGBQujN7FZDtB1SWEP5jUm_jL1lR9Tgsb7naiPk-9TpxnsFwHu3ajcADEtbgmgL5VRirBv9kWdQoQQo_nVC2G7WjPkGlK9z3402rg8ufN3aSdV6MeI0I_' \
+--header 'Authorization: key=fcm server key' \
 --header 'Content-Type: application/json' \
 --data-raw '    {
-            "to": "fIVhp1RJQByY_EitNC2FPW:APA91bHZTAYlLbisdjiDtSoyiSd-zkkDsBfpJK2V-D-syHK91foP0iaOT9YoKJKej92OwFylnL1TohOycpPlMTr0niUKAJKSNOhDFcYyXgyyUga00C8niVB4cont-ZziB_MrA29lU5tV",
-            "data":{
-                "channel_id":"incoming_call",
-                "title": "44w call",
-                "body": "Alexewwe is calling",
-                "phone": "565",
-                "not_id": "16721",
-                "callId": "6810703a-c178-4253-8c8c-425e775fb1a3"
-            },
-    
-            "priority": "high",
-            "topic":"all"
-        }'
+"to": "device_token",
+"data":{
+    "channel_id":"incoming_call",
+    "title": "Incoming call",
+    "body": "Alexe is calling",
+    "phone": "554-456-5676",
+    "not_id": "16721",
+    "callId": "6810703a-c178-4253-8c8c-425e775fb1a3"
+},
+"priority": "high",
+"topic":"all"
+}'
         
 ```
+
+# ToDo
+Add iOS side of things
